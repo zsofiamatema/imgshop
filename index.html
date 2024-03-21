@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+    <meta charset="UTF-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <style></style>
+    <script src=""></script>
+    <body>
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+        <label for="vehicle1"> I have a bike</label><br />
+        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" />
+        <label for="vehicle2"> I have a car</label><br />
+        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" />
+        <label for="vehicle3"> I have a boat</label><br />
+        <script>
+            function readItems() {
+                const items = document.getElementsByTagName('input')
+                //const vehicle1 = document.getElementById("vehicle1")
+                let writeit = ''
+                for (const item of items) {
+                    writeit = writeit + ' ' + item.value + ':' + item.checked
+                }
+
+                alert(writeit)
+            }
+        </script>
+
+        <div class="">
+            <h1>This is a Heading</h1>
+            <p>This is a paragraph.</p>
+            <p>This is another paragraph.</p>
+        </div>
+    </body>
+</html>
