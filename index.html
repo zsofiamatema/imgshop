@@ -8,12 +8,17 @@
     <script src=""></script>
     <body>
         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+        <img src="./images.imgshop/bike.jpg" width="100px" />
         <label for="vehicle1"> I have a bike</label><br />
         <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" />
+        <img src="./images.imgshop/car.jpg" width="100px" />
         <label for="vehicle2"> I have a car</label><br />
         <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" />
+        <img src="./images.imgshop/boat.jpg" width="100px" />
         <label for="vehicle3"> I have a boat</label><br />
+
         <button onclick="readItems()">OK</button>
+
         <script>
             function readItems() {
                 const items = document.getElementsByTagName('input')
