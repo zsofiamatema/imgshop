@@ -4,28 +4,59 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="" />
-    <style></style>
-    <script src=""></script>
-    <body>
-        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-        <img src="./images.imgshop/bike.jpg" width="100px" />
-        <label for="vehicle1"> I have a bike</label><br />
-        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" />
-        <img src="./images.imgshop/car.jpg" width="100px" />
-        <label for="vehicle2"> I have a car</label><br />
-        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" />
-        <img src="./images.imgshop/boat.jpg" width="100px" />
-        <label for="vehicle3"> I have a boat</label><br />
+    <style>
+        .row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            opacity: 0.9;
+        }
+        img {
+            border: 2px outset transparent;
+        }
+        img:hover {
+            opacity: 1;
+            border: 2px outset gray;
+        }
 
-        <button onclick="readItems()">OK</button>
+        .button {
+            cursor: pointer;
+        }
+    </style>
+
+    <body>
+        <div class="row">
+            <img src="./images.imgshop/bike.jpg" width="100px" onclick="increment('bike')" />
+            <input id="bike" type="number" value="0" />
+            <label for="bike"> I have a bike</label><br />
+        </div>
+        <div class="row">
+            <img src="./images.imgshop/car.jpg" width="100px" onclick="increment('car')" />
+            <input id="car" type="number" value="0" />
+            <label for="car"> I have a car</label><br />
+        </div>
+        <div class="row">
+            <img src="./images.imgshop/boat.jpg" width="100px" onclick="increment('boat')" />
+            <input id="boat" type="number" value="0" />
+            <label for="boat"> I have a boat</label><br />
+        </div>
+        <button class="button" onclick="basket()">Basket</button>
 
         <script>
-            function readItems() {
+            function increment(vehicle) {
+                let inputEl = document.getElementById(vehicle)
+                inputEl.value++
+            }
+            function basket() {
                 const items = document.getElementsByTagName('input')
-                //const vehicle1 = document.getElementById("vehicle1")
+                //const bike = document.getElementById("bike")
                 let writeit = ''
                 for (const item of items) {
-                    writeit = writeit + ' ' + item.value + ':' + item.checked
+                    if (Number(item.value) >= 1) {
+                        writeit = writeit + ' ' + item.id + ': ' + item.value
+                    }
                 }
 
                 alert(writeit)
