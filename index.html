@@ -13,10 +13,10 @@
             cursor: pointer;
             opacity: 0.9;
         }
-        img {
+        .row img {
             border: 2px outset transparent;
         }
-        img:hover {
+        .row img:hover {
             opacity: 1;
             border: 2px outset gray;
         }
@@ -24,42 +24,84 @@
         .button {
             cursor: pointer;
         }
+        .basket {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .counter {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: orangered;
+            color: bisque;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+
+            align-items: center;
+            justify-content: center;
+            display: none;
+        }
+        .counter div {
+            font-family: 'Roboto';
+            font-weight: 600;
+        }
+        .counter.visible {
+            display: flex;
+        }
     </style>
 
     <body>
+        <div class="basket">
+            <div id="counter" class="counter"><div id="count"></div></div>
+            <img src="./images.imgshop/basket.jpg" width="100px" onclick="increment('bike')" />
+        </div>
         <div class="row">
             <img src="./images.imgshop/bike.jpg" width="100px" onclick="increment('bike')" />
-            <input id="bike" type="number" value="0" />
+            <input id="bike" type="number" value="0" min="0" />
             <label for="bike"> I have a bike</label><br />
         </div>
         <div class="row">
             <img src="./images.imgshop/car.jpg" width="100px" onclick="increment('car')" />
-            <input id="car" type="number" value="0" />
+            <input id="car" type="number" value="0" min="0" />
             <label for="car"> I have a car</label><br />
         </div>
         <div class="row">
             <img src="./images.imgshop/boat.jpg" width="100px" onclick="increment('boat')" />
-            <input id="boat" type="number" value="0" />
+            <input id="boat" type="number" value="0" min="0" />
             <label for="boat"> I have a boat</label><br />
         </div>
-        <button class="button" onclick="basket()">Basket</button>
+        <button class="button" onclick="toBasket()">Basket</button>
 
         <script>
+            let basket = {
+                bike: 0,
+                car: 0,
+                boat: 0,
+            }
             function increment(vehicle) {
                 let inputEl = document.getElementById(vehicle)
                 inputEl.value++
             }
-            function basket() {
+            function toBasket() {
                 const items = document.getElementsByTagName('input')
                 //const bike = document.getElementById("bike")
-                let writeit = ''
+
                 for (const item of items) {
-                    if (Number(item.value) >= 1) {
-                        writeit = writeit + ' ' + item.id + ': ' + item.value
-                    }
+                    basket[item.id] = Number(item.value)
+                }
+                const count = basket.bike + basket.car + basket.boat
+                const counterEl = document.getElementById('counter')
+                if (count > 0) {
+                    counterEl.classList.add('visible')
+                } else {
+                    counterEl.classList.remove('visible')
                 }
 
-                alert(writeit)
+                const countEl = document.getElementById('count')
+                countEl.innerHTML = count
             }
         </script>
 
