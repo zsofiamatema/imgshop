@@ -29,6 +29,7 @@
             top: 10px;
             right: 10px;
             cursor: pointer;
+            z-index: 188;
         }
         .counter {
             position: absolute;
@@ -56,7 +57,13 @@
     <body>
         <div class="basket">
             <div id="counter" class="counter"><div id="count"></div></div>
-            <img src="./images.imgshop/basket.jpg" width="100px" onclick="increment('bike')" />
+            <img
+                src="./images.imgshop/basket.jpg"
+                width="60"
+                height="60"
+                alt=""
+                onclick="alert('you clicked it')"
+            />
         </div>
         <div class="row">
             <img src="./images.imgshop/bike.jpg" width="100px" onclick="increment('bike')" />
@@ -73,6 +80,7 @@
             <input id="boat" type="number" value="0" min="0" />
             <label for="boat"> I have a boat</label><br />
         </div>
+
         <button class="button" onclick="toBasket()">Basket</button>
 
         <script>
