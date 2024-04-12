@@ -62,7 +62,7 @@
                 width="60"
                 height="60"
                 alt=""
-                onclick="alert('you clicked it')"
+                onclick="showBasketContents()"
             />
         </div>
         <div class="row">
@@ -80,7 +80,9 @@
             <input id="boat" type="number" value="0" min="0" />
             <label for="boat"> I have a boat</label><br />
         </div>
-
+        <div class="toBasket">
+            <input id="countent" type="number" value="0" />
+        </div>
         <button class="button" onclick="toBasket()">Basket</button>
 
         <script>
@@ -110,6 +112,20 @@
 
                 const countEl = document.getElementById('count')
                 countEl.innerHTML = count
+            }
+
+            function showBasketContents() {
+                let itemsInBasket = []
+                for (const vehicle in basket) {
+                    if (basket[vehicle] > 0) {
+                        itemsInBasket.push(`${vehicle}: ${basket[vehicle]}`)
+                    }
+                }
+                if (itemsInBasket.length > 0) {
+                    alert('content of basket:\n' + itemsInBasket.join('\n'))
+                } else {
+                    alert('BASKET IS EMPTY.')
+                }
             }
         </script>
 
