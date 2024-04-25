@@ -52,9 +52,23 @@
         .counter.visible {
             display: flex;
         }
+        .contentPanel {
+            position: fixed;
+            top: 75px;
+            right: 10px;
+            display: none;
+            background-color: rgb(73, 140, 221);
+            padding: 10px;
+        }
+        .contentPanel.visible {
+            display: block;
+            z-index: 188;
+        }
     </style>
 
     <body>
+        <div id="cartMenu" class="cart-menu"></div>
+
         <div class="basket">
             <div id="counter" class="counter"><div id="count"></div></div>
             <img
@@ -65,6 +79,7 @@
                 onclick="showBasketContents()"
             />
         </div>
+        <div class="contentPanel" id="contentPanel"></div>
         <div class="row">
             <img src="./images.imgshop/bike.jpg" width="100px" onclick="increment('bike')" />
             <input id="bike" type="number" value="0" min="0" />
@@ -80,9 +95,7 @@
             <input id="boat" type="number" value="0" min="0" />
             <label for="boat"> I have a boat</label><br />
         </div>
-        <div class="toBasket">
-            <input id="countent" type="number" value="0" />
-        </div>
+
         <button class="button" onclick="toBasket()">Basket</button>
 
         <script>
@@ -121,11 +134,16 @@
                         itemsInBasket.push(`${vehicle}: ${basket[vehicle]}`)
                     }
                 }
-                if (itemsInBasket.length > 0) {
-                    alert('content of basket:\n' + itemsInBasket.join('\n'))
-                } else {
-                    alert('BASKET IS EMPTY.')
-                }
+
+                const content =
+                    itemsInBasket.length > 0
+                        ? 'content of basket:<ul><li>' +
+                          itemsInBasket.join('</li><li>') +
+                          '</li></ul>'
+                        : 'BASKET IS EMPTY.'
+                const contentEl = document.getElementById('contentPanel')
+                contentEl.innerHTML = content
+                contentEl.classList.toggle('visible')
             }
         </script>
 
